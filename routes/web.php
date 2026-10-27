@@ -5,9 +5,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TableController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('menus', MenuController::class);
     Route::resource('reservations', ReservationController::class);
+    Route::resource('tables', TableController::class);
 });
 
 require __DIR__.'/auth.php';
